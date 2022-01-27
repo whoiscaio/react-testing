@@ -41,14 +41,13 @@ describe('Dropdown', () => {
     render(<Dropdown options={options} />);
 
     userEvent.click(screen.getByRole('button'));
-    userEvent.click(screen.getByText(options[0]));
+    userEvent.click(screen.getByText(options[1]));
 
-    expect(screen.queryByText(options[0])).not.toBeInTheDocument();
-    expect(screen.queryByText(options[1])).not.toBeInTheDocument();
-    expect(screen.queryByText(options[2])).not.toBeInTheDocument();
-    expect(screen.queryByText(options[3])).not.toBeInTheDocument();
-    expect(screen.queryByText(options[4])).not.toBeInTheDocument();
-    expect(screen.getByRole('figure')).toBe(options[0]);
+    expect(screen.queryByRole('listitem', { name: options[0] })).not.toBeInTheDocument();
+    expect(screen.queryByRole('listitem', { name: options[1] })).not.toBeInTheDocument();
+    expect(screen.queryByRole('listitem', { name: options[2] })).not.toBeInTheDocument();
+    expect(screen.queryByRole('listitem', { name: options[3] })).not.toBeInTheDocument();
+    expect(screen.queryByRole('listitem', { name: options[4] })).not.toBeInTheDocument();
+    expect(screen.getByRole('figure').textContent).toEqual(options[1]);
   })
-
 })
